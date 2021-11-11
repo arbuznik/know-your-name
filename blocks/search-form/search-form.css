@@ -1,0 +1,24 @@
+.content-container__form {
+  margin-bottom: 30px;
+  background-color: #fff;
+}
+
+.search-form__input {
+  font-family: "Inter", "Arial", sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  line-height: 30px;
+  width: 100%;
+  min-height: 10vh;
+  box-sizing: border-box;
+  border: 2px solid #2e9aff;
+  border-radius: calc(10vh / 2);
+  padding: 0 20px 0 50px;
+  background: url('../../images/magnifyingglass.svg') no-repeat;
+  background-position: 20px center;
+}
+
+.search-form__input:focus {
+  outline: none;
+}
+
