@@ -1,5 +1,11 @@
 .content-container {
-  margin-top: 20vh;
   display: grid;
   grid-template-columns: minmax(320px, 70vw);
+}
+
+
+
+.content-container__form {
+  margin-bottom: 30px;
+  background-color: #fff;
 }
