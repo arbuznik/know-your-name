@@ -18,7 +18,8 @@ export class Detail {
     .cloneNode(true);
 }
 
-  renderNameInfo() {
+  renderNameInfoAtPosition(position) {
+    this._detailElement.style.setProperty('--pos', position);
     this._detailsContainer.append(this._detailElement)
   }
 }

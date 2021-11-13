@@ -1,4 +1,5 @@
 import { Detail } from './Detail.js'
+import { CountryDisctionary } from './CountryDictionary.js';
 
 // https://api.genderize.io?name=peter
 let genderData = {
@@ -25,43 +26,98 @@ let ageData = {
   "count": 151057
 };
 
-function handleGenderData(data) {
-  const detailContent = `Gender: ${data.gender}`;
-  const detailDescription = `Probability ${data.probability * 100}% based on ${data.count} names.`;
+const countryDictionary = new CountryDisctionary();
 
-  const detail = new Detail(detailContent, detailDescription);
+const detailsContainer = document.querySelector('.details');
+const searchForm = document.querySelector('.search-form');
+searchForm.addEventListener('submit', getData);
+const searchInput = document.querySelector('.search-form__input');
+
+function getData() {
+  const name = searchInput.value;
   
-  detail.renderNameInfo();
+  detailsContainer.textContent = '';
+
+  getGenderDataFor(name);
+  getAgeDataFor(name);
+  getNationalityDataFor(name);
+}
+
+
+async function getGenderDataFor(name) {
+  try {
+    let response = await fetch(`https://api.genderize.io?name=${name}`);
+    let data = await response.json();
+
+    handleGenderData(data);
+  } catch(err) {
+    const detail = new Detail(err.message);
+    detail.renderNameInfoAtPosition(1);
+  }
+}
+
+async function getAgeDataFor(name) {
+  try {
+    let response = await fetch(`https://api.agify.io?name=${name}`);
+    let data = await response.json();
+    handleAgeData(data);
+  } catch(err) {
+    const detail = new Detail(err.message);
+    detail.renderNameInfoAtPosition(2);
+  }
+}
+
+async function getNationalityDataFor(name) {
+  try {
+    let response = await fetch(`https://api.nationalize.io?name=${name}`);
+    let data = await response.json();
+    handleNationalityData(data);
+  } catch(err) {
+    const detail = new Detail(err.message);
+    detail.renderNameInfoAtPosition(2);
+  }
+}
+
+function handleGenderData(data) {
+  if (data.gender) {
+    const detailContent = `Gender: ${data.gender}`;
+    const detailDescription = `Probability ${data.probability * 100}% based on ${data.count} names.`;
+
+    const detail = new Detail(detailContent, detailDescription);
+
+    detail.renderNameInfoAtPosition(1);
+  }
 }
 
 function handleAgeData(data) {
-  const detailContent = `Age: ${data.age}`;
-  const detailDescription = `Based on ${data.count} names.`;
-
-  const detail = new Detail(detailContent, detailDescription);
-
-  detail.renderNameInfo();
+  if (data.age) {
+    const detailContent = `Age: ${data.age}`;
+    const detailDescription = `Based on ${data.count} names.`;
+    const detail = new Detail(detailContent, detailDescription);
+    detail.renderNameInfoAtPosition(2);
+  }
 }
 
 function handleNationalityData(data) {
   data['country'].forEach(country => {
-    const detailContent = `Country: ${country['country_id']}`;
+    const countryId = country['country_id'];
+    const countryName = countryDictionary.getCountryNameById(countryId);
+
+    const detailContent = countryName ? `Nationality: ${countryName}` : `Nationality: ${countryId}`;
     const detailDescription = `Probability ${(country['probability'] * 100).toFixed(2)}%`;
 
     const detail = new Detail(detailContent, detailDescription);
 
-    detail.renderNameInfo();
+    detail.renderNameInfoAtPosition(3);
   })
 }
 
-handleGenderData(genderData);
-handleAgeData(ageData)
-handleNationalityData(nationData)
 
 
 
-
-
+// handleNationalityData(nationData)
+// handleAgeData(ageData);
+// handleGenderData(genderData);
 
 // fetch('https://api.genderize.io?name=olga')
 //   .then(response => response.json())

@@ -5,6 +5,7 @@
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  row-gap: 50px;
   align-items: center;
   justify-content: space-between;
   min-height: 100vh;

@@ -1,10 +1,13 @@
 .detail {
+ --pos: 3;
+
   background-color: #ff852e;
   border-radius: 10px;
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  order: var(--pos);
 }
 
 .detail__content {
