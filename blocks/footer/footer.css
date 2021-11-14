@@ -1,6 +1,6 @@
 .footer {
   bottom: 20px;
-  font-size:10px;
+  font-size: 12px;
   max-width: 80vw;
   text-align: center;
 }
@@ -10,7 +10,7 @@
 }
 
 .footer__link {
-  text-decoration: none;
+  color: #333333;
 }
 
 .footer__link:visited {

@@ -2,19 +2,25 @@
   font-family: "Inter", "Arial", sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  color: #333333;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   row-gap: 50px;
   align-items: center;
   justify-content: space-between;
-  min-height: 100vh;
 }
 
 .page__content-container {
-  margin-top: 20vh;
+  margin: 80px 20px;
 }
 
 .page__footer {
   margin-bottom: 10px;
+}
+
+@media (min-width: 425px) {
+  .page__content-container {
+    margin: 100px 100px;
+  }
 }

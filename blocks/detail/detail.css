@@ -1,12 +1,11 @@
 .detail {
- --pos: 3;
-
+  --pos: 3;
   background-color: #ff852e;
   border-radius: 10px;
   padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 10px;
   order: var(--pos);
 }
 
@@ -17,4 +16,27 @@
 .detail__description {
   margin: 0;
   font-size: 10px;
+}
+
+@media (min-width: 425px) {
+  .detail {
+    grid-template-columns: auto 1fr;
+  }
+  
+  .detail__description {
+    justify-self: end;
+    align-self: end;
+  }
+}
+
+@media (min-width: 1024px) {
+  .detail__content {
+    font-size: 22px;
+  }
+  
+  .detail__description {
+    font-size: 14px;
+    justify-self: end;
+    align-self: end;
+  }
 }

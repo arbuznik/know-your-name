@@ -1,4 +1,4 @@
-export class CountryDisctionary {
+export class CountryDictionary {
   constructor() {
     this._dictionary = {
       "AD": "Andorra",

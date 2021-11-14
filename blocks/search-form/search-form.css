@@ -1,15 +1,21 @@
+.search-form {
+  width: 100%;
+}
+
 .search-form__input {
   font-family: "Inter", "Arial", sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  font-size: 26px;
   line-height: 30px;
   width: 100%;
-  min-height: 10vh;
+  min-height: 80px;
   box-sizing: border-box;
-  border: 2px solid #2e9aff;
-  border-radius: calc(10vh / 2);
-  padding: 0 20px 0 50px;
+  border: 5px solid #2e9aff;
+  border-radius: calc(80px / 2);
+  padding: 0 20px 0 60px;
   background: url('../../images/magnifyingglass.svg') no-repeat;
+  background-size: 26px;
   background-position: 20px center;
 }
 

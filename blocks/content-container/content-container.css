@@ -1,11 +1,10 @@
 .content-container {
   display: grid;
-  grid-template-columns: minmax(320px, 70vw);
+  grid-template-columns: minmax(auto, 960px);
+  justify-items: center;
 }
 
-
-
 .content-container__form {
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   background-color: #fff;
 }
