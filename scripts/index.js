@@ -13,7 +13,9 @@ const apiUrls = [
 
 searchInput.focus();
 
-function getData() {
+function getData(evt) {
+  evt.preventDefault();
+
   const name = searchInput.value;
   detailsContainer.textContent = '';
 
