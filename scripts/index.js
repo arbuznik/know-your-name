@@ -11,7 +11,9 @@ const apiUrls = [
   'https://api.nationalize.io?name=',
 ]
 
-searchInput.focus();
+function onPageLoad() {
+  setTimeout(searchInput.focus(), 300);
+}
 
 function getData(evt) {
   evt.preventDefault();
@@ -36,3 +38,5 @@ function handleError(error) {
   errorElement.textContent = `Error: ${error.message}`;
   detailsContainer.append(errorElement);
 }
+
+onPageLoad();
