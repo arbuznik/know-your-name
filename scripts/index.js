@@ -2,8 +2,10 @@ import { Detail } from './Detail.js'
 
 const detailsContainer = document.querySelector('.details');
 const searchForm = document.querySelector('.search-form');
-searchForm.addEventListener('submit', getData);
+searchForm.addEventListener('submit', handleFormSubmit);
 const searchInput = document.querySelector('.search-form__input');
+const loader = document.querySelector('.loader');
+let dataIsLoading = false; 
 
 const apiUrls = [
   'https://api.genderize.io?name=',
@@ -13,6 +15,13 @@ const apiUrls = [
 
 function onPageLoad() {
   setTimeout(searchInput.focus(), 300);
+}
+
+function handleFormSubmit(evt) {
+  if (!dataIsLoading) {
+    toggleDataLoadingState();
+    getData(evt);
+  }
 }
 
 function getData(evt) {
@@ -31,12 +40,19 @@ function getData(evt) {
 
 function handleData(nameData) {
   nameData.forEach((data) => new Detail(data))
+  toggleDataLoadingState();
 }
 
 function handleError(error) {
   let errorElement = document.createElement('p');
   errorElement.textContent = `Error: ${error.message}`;
   detailsContainer.append(errorElement);
+  toggleDataLoadingState();
+}
+
+function toggleDataLoadingState() {
+  dataIsLoading = !dataIsLoading;
+  dataIsLoading ? loader.classList.add('loader_shown') : loader.classList.remove('loader_shown');
 }
 
 onPageLoad();

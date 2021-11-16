@@ -1,8 +1,7 @@
-import { CountryDictionary} from './CountryDictionary.js';
+import { countryDictionary } from './countryDictionary.js';
 
 export class Detail {
   constructor(detailData) {
-    this._countryDictionary = new CountryDictionary();
     this._data = detailData;
 
     this._detailsContainer = document.querySelector('.details');
@@ -50,16 +49,18 @@ export class Detail {
     this._detailDescriptionElement.textContent = '';
 
     this._data['country'].forEach(country => {
-      this._countryId = country['country_id'];
-      this._countryName = this._countryDictionary.getCountryNameById(this._countryId);
-      
-      this._detailContent = this._countryName ? this._countryName : this.country_id;
-      this._detailDescription = `Probability ${(country['probability'] * 100).toFixed(2)}%`;
+      if (country['country_id'] !== '') {
+        this._countryId = country['country_id'];
+        this._countryName = countryDictionary[this._countryId];
 
-      this._createNewRowElement(this._countryName, 'detail__content');
-      this._createNewRowElement(this._detailDescription, 'detail__description');
+        this._detailContent = this._countryName ? this._countryName : this.country_id;
+        this._detailDescription = `Probability ${(country['probability'] * 100).toFixed(2)}%`;
 
-      this._detailElement.style.setProperty('--pos', '3');
+        this._createNewRowElement(this._countryName, 'detail__content');
+        this._createNewRowElement(this._detailDescription, 'detail__description');
+
+        this._detailElement.style.setProperty('--pos', '3');
+      }
     })
 
     this._renderNameInfo();
