@@ -18,9 +18,3 @@
 .page__footer {
   margin-bottom: 10px;
 }
-
-@media (min-width: 425px) {
-  .page__content-container {
-    margin: 100px 100px;
-  }
-}
